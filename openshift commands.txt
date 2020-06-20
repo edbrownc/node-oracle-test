@@ -1,0 +1,11 @@
+#OPENSHIFT
+docker login -u developer ByUGI2OIMza9KNdynKa29qtyoAsJS7ULALOA4Rfpqoo docker-registry-default.127.0.0.1.nip.io
+docker images
+oc create is node_example -n nodejs-10
+docker tag node-oracle docker-registry-default.127.0.0.1.nip.io/nodejs-10/node-oracle 
+docker push docker-registry-default.127.0.0.1.nip.io/nodejs-10/node-oracle
+
+
+#DOCKER IMAGE
+docker build --pull -t node-oracle .
+docker run --name oracle-node10 aeac9009ca83
