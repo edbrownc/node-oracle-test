@@ -1,14 +1,15 @@
 #OPENSHIFT
 oc login -u system:admin
 oc adm policy add-cluster-role-to-user cluster-admin developer
+oc login https://127.0.0.1:8443 --token=a8buFSvVfyVA4nVTcQc1G77zz9SE3bxJvPsZehVMTsA
 
-sudo docker login -u developer -p DRxb-UxHBraxRWaxY17cQNY4dOJLLKtJp5OnEQodFJs docker-registry-default.127.0.0.1.nip.io
+sudo docker login -u developer -p a8buFSvVfyVA4nVTcQc1G77zz9SE3bxJvPsZehVMTsA 172.30.1.1:5000
 docker images
-oc create is node_oracle -n nodejs-oracle
-sudo docker tag 774a875d9344 172.30.1.1:5000/nodejs-oracle/node-oracle:latest
-sudo docker push 172.30.1.1:5000/oracle-nodejs/node-oracle-test:latest
+oc create is oracle-nodejs -n oracle-nodejs
+sudo docker tag oracle-nodejs 172.30.1.1:5000/oracle-nodejs/oracle-nodejs:latest
+sudo docker push 172.30.1.1:5000/oracle-nodejs/oracle-nodejs:latest
 
-oc login https://127.0.0.1:8443 --token=DRxb-UxHBraxRWaxY17cQNY4dOJLLKtJp5OnEQodFJs
 #DOCKER IMAGE
-docker build -t 172.30.1.1:5000/oracle-nodejs/node-oracle-test:10 .
-docker run --name oracle-node10 aeac9009ca83
+docker build -t 172.30.1.1:5000/oracle-nodejs/oracle-nodejs:latest .
+docker run --name oracle-nodejs 172.30.1.1:5000/oracle-nodejs/oracle-nodejs
+
